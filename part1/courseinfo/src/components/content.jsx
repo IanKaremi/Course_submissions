@@ -1,15 +1,22 @@
 import Part from "./part"
-export default function Content(props){
+export default function Content({parts}){
+    console.log(parts)
     return(
         <>
             
-                <Part part={props.part1} ex={props.exercises1}/>
+               {parts.map(x =>
+                (   
+                    <>
+                    
+                    <Part name={x.name} ex={x.exercises}/>
+                    </>
+
+                ))}
+              
+               
           
             
-                <Part part={props.part2} ex={props.exercises2}/>
-          
-            
-                <Part part={props.part3} ex={props.exercises3}/>
+                
            
         </>
     )
