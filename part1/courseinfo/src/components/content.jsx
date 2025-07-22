@@ -4,11 +4,11 @@ export default function Content({parts}){
     return(
         <>
             
-               {parts.map(x =>
+               {parts.map((x,idx) =>
                 (   
                     <>
                     
-                    <Part name={x.name} ex={x.exercises}/>
+                    <Part key={idx} name={x.name} ex={x.exercises}/>
                     </>
 
                 ))}
