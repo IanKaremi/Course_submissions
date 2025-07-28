@@ -16,11 +16,13 @@ function App() {
     <button onClick={()=>setBad(bad+1)}>bad</button>
 
 
-    <Statistics g={good} n={neutral} b={bad}/>
+    {(good==0 && neutral==0 && bad == 0) && <div>No feedback given.</div>}
+
+    {!(good==0 && neutral==0 && bad == 0) && <Statistics g={good} n={neutral} b={bad}/>}
    
 
-    <p>average {(good + (bad*-1))/(good+neutral+bad)}</p>
-    <p>positive {good/(good+neutral+bad)*100}%</p>
+    {!(good==0 && neutral==0 && bad == 0) && <p>average {(good + (bad*-1))/(good+neutral+bad)}</p>}
+    {!(good==0 && neutral==0 && bad == 0) && <p>positive {good/(good+neutral+bad)*100}%</p>}
       
     </>
   )
