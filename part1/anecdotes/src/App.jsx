@@ -13,16 +13,25 @@ const App = () => {
   ]
    
   const [selected, setSelected] = useState(0)
-  function handleClick(){
-    console.log( Math.floor(Math.random()*8) )
-    setSelected( Math.floor(Math.random()*8) )
+  const [vote, setVote] = useState(new Uint8Array(8))
+
+  function handleVote(x){
+    setVote(prev_vote=>prev_vote.map((count,index)=> 
+      index === x ? count +1 : count
+    
+    ));
+   
+
+   
+
   }
 
  
   return (
     <div>
-      <p>{anecdotes[selected]}</p>
-      <button onClick={handleClick}>Next anecdote</button>
+      <p>{anecdotes[selected]}{vote[selected]}</p>
+      <button onClick={()=>setSelected(Math.floor(Math.random()*8))}>Next anecdote</button>
+      <button onClick={()=>handleVote(selected)}>Vote</button>
     </div>
   )
 }
