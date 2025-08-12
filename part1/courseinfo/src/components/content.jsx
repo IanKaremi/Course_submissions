@@ -1,6 +1,6 @@
 import Part from "./part"
 export default function Content({props}){
-    console.log(props)
+   
     return(
         <>
             
