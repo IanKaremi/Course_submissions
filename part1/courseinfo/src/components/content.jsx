@@ -1,15 +1,15 @@
 import Part from "./part"
-export default function Content({parts}){
-    console.log(parts)
+export default function Content({props}){
+    console.log(props)
     return(
         <>
             
-               {parts.map((x,idx) =>
+               {props.map((x) =>
                 (   
-                    <>
+                 
                     
-                    <Part key={idx} name={x.name} ex={x.exercises}/>
-                    </>
+                    <Part key={x.id} name={x.name} ex={x.exercises}/>
+                   
 
                 ))}
               
