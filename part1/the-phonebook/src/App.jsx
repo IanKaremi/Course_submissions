@@ -16,7 +16,13 @@ const App = () => {
   const handleSubmit = (v) =>{
     v.preventDefault()
     console.log(newName);
-    setPersons(prev => prev.concat({name: newName}))
+    let val = persons.find(obj => obj.name === newName)
+    if(val === undefined){
+      setPersons(prev => prev.concat({name: newName}))
+    }else{
+      alert(`${newName} already exists.`)
+    }
+    
     
   }
 
