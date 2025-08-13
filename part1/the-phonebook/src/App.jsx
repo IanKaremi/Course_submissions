@@ -6,19 +6,27 @@ const App = () => {
     { name: 'Arto Hellas' }
   ]) 
   const [newName, setNewName] = useState('')
+  const [newPhone, setNewPhone] = useState('')
 
-  function handleChange(e){
+  function handleNameChange(e){
   
     setNewName(e.target.value)
     
     
   }
+  const handlePhoneChange = (y) =>{
+    setNewPhone(y.target.value)
+    console.log(newPhone);
+    
+
+  }
+
   const handleSubmit = (v) =>{
     v.preventDefault()
-    console.log(newName);
+    
     let val = persons.find(obj => obj.name === newName)
     if(val === undefined){
-      setPersons(prev => prev.concat({name: newName}))
+      setPersons(prev => prev.concat({name: newName, number:newPhone}))
     }else{
       alert(`${newName} already exists.`)
     }
@@ -26,7 +34,7 @@ const App = () => {
     
   }
 
-  const renderPerson = persons.map((x)=>{return <li>{x.name}</li>})
+  const renderPerson = persons.map((x)=>{return <li key={x.name}>{x.name} - {x.number}</li>})
  
 
   return (
@@ -34,8 +42,10 @@ const App = () => {
       <h2>Phonebook</h2>
       <form onSubmit={handleSubmit}>
         <div>
-          name: <input value={newName} onChange={handleChange}/>
-          debug: {newName}
+          name: <input value={newName} onChange={handleNameChange}/>
+        </div>
+        <div>
+          number: <input type='tel' maxLength='10' minLength='10' value={newPhone} onChange={handlePhoneChange}/>
         </div>
         <div>
           <button type="submit">add</button>
