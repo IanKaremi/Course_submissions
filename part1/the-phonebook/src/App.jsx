@@ -50,12 +50,12 @@ const App = () => {
     
     persons.forEach((x)=>{
       if (x.name.toLowerCase().includes(y.target.value)){
-        console.log(y.target.value);
+        //console.log(y.target.value);
         temp_arr.push(x) 
       }
     })
     
-    console.log('results',temp_arr)
+    //console.log('results',temp_arr)
     setRes(temp_arr)
     
 
