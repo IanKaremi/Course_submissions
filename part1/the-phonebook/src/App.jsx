@@ -34,7 +34,7 @@ const App = () => {
 
   const handlePhoneChange = (y) =>{
     setNewPhone(y.target.value)
-    console.log(newPhone);
+    // console.log(newPhone);
   }
 
   const handleSubmit = (v) =>{
@@ -49,7 +49,16 @@ const App = () => {
 
 
     }else{
-      alert(`${newName} already exists.`)
+    
+      if (!(window.confirm(`${newName} already exists. Would you like to update their number to: ${newPhone} ?`))) return
+      let name = persons.find(obj => obj.name === newName)
+      let url = name.id
+      
+      let new_obj = {name: newName, number:newPhone}
+     
+      phoneService.put(url,new_obj)
+      
+     
     }
   }
 

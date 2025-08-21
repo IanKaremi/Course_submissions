@@ -14,7 +14,10 @@ const delete_el = (x) =>{
   return axios.delete(baseUrl +'/'+ x)
 }
 
+const put = (url,obj) =>{ 
+  return axios.put(baseUrl+'/'+url , obj);
+}
 
 
 
-export default {getAll, create, delete_el}
+export default {getAll, create, delete_el, put}
