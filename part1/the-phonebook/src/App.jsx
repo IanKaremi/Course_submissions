@@ -2,13 +2,15 @@ import { useState, useEffect } from 'react'
 import Filter from './components/filter'
 import PersonForm from './components/personForm'
 import Persons from './components/persons'
-import axios from 'axios'
+
+import phoneService from './services/phoneService'
 
 const App = () => {
 
   
   const get_data = () =>{
-    axios.get("http://localhost:3001/persons").then(
+    phoneService.getAll()
+    .then(
       response => {
         const person_data = response.data
         console.log(person_data);
@@ -41,7 +43,8 @@ const App = () => {
     if(val === undefined){
       let new_obj = {name: newName, number:newPhone}
       setPersons(prev => prev.concat({name: newName, number:newPhone}))
-      axios.post("http://localhost:3001/persons",new_obj)
+      phoneService
+        .create(new_obj)
         .then(response => {console.log(response)})
 
 
