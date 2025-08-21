@@ -45,7 +45,7 @@ const App = () => {
       setPersons(prev => prev.concat({name: newName, number:newPhone}))
       phoneService
         .create(new_obj)
-        .then(response => {console.log(response)})
+        // .then(response => {console.log(response)})
 
 
     }else{
@@ -53,8 +53,17 @@ const App = () => {
     }
   }
 
-  const renderPerson = persons.map((x)=>{return <li key={x.id}>{x.name} - {x.number}</li>})
-  const renderRes = res.map((x)=>{return <li key={x.id}>{x.name} - {x.number}</li>})
+  const handleDelete = (x) =>{
+
+    if(window.confirm("Are you sure you want to delete?")){
+        phoneService.delete_el(x)
+        console.log('deleted', x)
+    }else{
+      alert("Deletion aborted.")
+    }
+  }
+  const renderPerson = persons.map((x)=>{return <li key={x.id}>{x.name} - {x.number} <button onClick={()=>handleDelete(x.id)}>Delete</button></li>})
+  const renderRes = res.map((x)=>{return <li key={x.id}>{x.name} - {x.number}<button onClick={()=>handleDelete(x.id)}>Delete</button></li>})
 
   const handleParamChange = (y) =>{
     setParam(y.target.value)

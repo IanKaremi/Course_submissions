@@ -10,9 +10,11 @@ const create = newObject => {
   return axios.post(baseUrl, newObject)
 }
 
+const delete_el = (x) =>{
+  return axios.delete(baseUrl +'/'+ x)
+}
 
 
 
 
-
-export default {getAll, create}
+export default {getAll, create, delete_el}
