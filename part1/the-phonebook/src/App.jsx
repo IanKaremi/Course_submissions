@@ -39,7 +39,12 @@ const App = () => {
     v.preventDefault()
     let val = persons.find(obj => obj.name === newName)
     if(val === undefined){
+      let new_obj = {name: newName, number:newPhone}
       setPersons(prev => prev.concat({name: newName, number:newPhone}))
+      axios.post("http://localhost:3001/persons",new_obj)
+        .then(response => {console.log(response)})
+
+
     }else{
       alert(`${newName} already exists.`)
     }
