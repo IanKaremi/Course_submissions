@@ -58,13 +58,31 @@ const App = () => {
 
 
     }else{
+      let bool;
     
       if (!(window.confirm(`${newName} already exists. Would you like to update their number to: ${newPhone} ?`))) return
       let name = persons.find(obj => obj.name === newName)
       let url = name.id
       
       let new_obj = {name: newName, number:newPhone}
-      const notif = document.getElementById('notif')
+     
+     
+      phoneService.put(url,new_obj).catch(error => {
+        alert(`the user '${newName}' was already deleted from server`, error)     
+        const notif = document.getElementById('del-notif')
+        notif.textContent = `${newName}' was already deleted from server`
+        setTimeout(()=>{notif.style.display = "block"},"20")
+        setTimeout(()=>{notif.style.display = "none"},"1000")
+        bool = true    
+      })
+      
+      if(bool){
+
+        return;
+       
+
+      }else{
+         const notif = document.getElementById('notif')
       notif.textContent = `Edited ${newName}`
        setTimeout(()=>{
        const notif =  document.getElementById("notif")
@@ -74,9 +92,8 @@ const App = () => {
        const notif =  document.getElementById("notif")
        notif.style.display = "none"
       },"1000")
-     
-      phoneService.put(url,new_obj)
-      
+
+      }
      
     }
   }
@@ -85,17 +102,18 @@ const App = () => {
 
     if(window.confirm("Are you sure you want to delete?")){
         phoneService.delete_el(id)
-        console.log('deleted', name)
-        SetDel(name)
 
-      setTimeout(()=>{
-       const notif =  document.getElementById("del-notif")
-       notif.style.display = "block"
-      },"20")
-      setTimeout(()=>{
-       const notif =  document.getElementById("del-notif")
-       notif.style.display = "none"
-      },"1000")
+        console.log('deleted', name);
+        SetDel(name);
+
+        setTimeout(()=>{
+        const notif =  document.getElementById("del-notif")
+        notif.style.display = "block"
+        },"20");
+        setTimeout(()=>{
+        const notif =  document.getElementById("del-notif")
+        notif.style.display = "none"
+        },"1000");
 
     }else{
       alert("Deletion aborted.")
