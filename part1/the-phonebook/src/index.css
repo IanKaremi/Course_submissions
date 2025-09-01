@@ -1,0 +1,15 @@
+.notif{
+    border: 2px solid green;
+    background-color: gray;
+    color: green;
+    font-size: 20px;
+    padding: 10px;
+}
+
+.del-notif{
+    border: 2px solid red;
+    background-color: gray;
+    color: red;
+    font-size: 20px;
+    padding: 10px;
+}
