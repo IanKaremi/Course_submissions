@@ -33,3 +33,10 @@ app.listen(PORT, ()=>{
 app.get('/api/persons',(request,response)=>{
     response.json(phonebook)
 })
+
+app.get('/info',(request,response)=>{
+     const date_now = new Date();
+    response.json(`Phonebook has info for ${phonebook.length} people.
+    ${date_now.toString()}`)
+
+})
