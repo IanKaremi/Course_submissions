@@ -1,0 +1,14 @@
+{
+  "name": "phonebook",
+  "version": "1.0.0",
+  "description": "course submission",
+  "license": "ISC",
+  "author": "INK",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "start",
+    "start": "node index.js",
+    "dev": "node --watch index.js"
+  }
+}
