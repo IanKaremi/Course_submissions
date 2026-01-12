@@ -40,3 +40,17 @@ app.get('/info',(request,response)=>{
     ${date_now.toString()}`)
 
 })
+
+app.get('/api/persons/:id',(request,response)=>{
+    const id = request.params.id;
+    let user;
+    if(phonebook.length >= id){
+      user = phonebook[id - 1]
+      response.json(user);
+    }else{
+      user = "No user coresponding to the ID." 
+      response.status(410).json(user);
+    }
+    
+    
+})
