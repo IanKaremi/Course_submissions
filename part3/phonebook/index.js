@@ -1,4 +1,5 @@
 const express = require('express')
+const { NULL } = require('mysql/lib/protocol/constants/types')
 const app = express()
 app.use(express.json())
 
@@ -80,11 +81,28 @@ app.post('/api/persons',(request,response)=>{
     const name = request.body.name;
     const number = request.body.number;
 
-    phonebook.push(
-      {"id" : id,
-      "name" : name,
-      "number" : number})
+    let blank = !request.body.name  || !request.body.number
+    let exists = phonebook.some((x)=> x.name === name)
 
-    response.json("Added.")
+    if (blank){// if no
+      response.status(400).json({ Error: "Missing fields. Make sure name & number are filled." });
+    
+    }else{
+      if(exists){
+        response.status(400).json({Error: "Name must be unique."});
+      
+        console.log(exists)    
+      }else{
+        phonebook.push(
+        {"id" : id,
+        "name" : name,
+        "number" : number})
+        response.json("Added.")
+
+      }
+  }
+    
+
+    
   
 })
